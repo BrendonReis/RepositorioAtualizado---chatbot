@@ -2,10 +2,10 @@
 
 # *Instalação completa*:
 
-Antes de começarmos, você precisa estar com uma
-VPS e Domínio em mãos!
+Antes de começarmos, você precisa estar com uma VPS e Domínio em mãos!
 
 Aponte sua VPS para seu domínio no DNS.
+
 Aponte 2 subdomínios para sua VPS:
 
 Exemplo:
@@ -15,8 +15,7 @@ Para backend: api.seudominioaqui.com
 
 # *Pronto?! vamos lá..*
 
-Atenção: O texto em cor roxa são as linhas de comando
-que devem ser executadas no seu terminal.
+Atenção: O texto em cor roxa são as linhas de comando que devem ser executadas no seu terminal.
 
 # *Atualização da VPS:*
 apt update
@@ -32,21 +31,24 @@ bash install.sh
 No menu “files”, dentro da pasta “home” do aapanel:
 
 Abra o terminal dentro do aapanel e execute o seguinte comando:
+
 git clone [link do seu instalador do github aqui]
 
 Após clonar libere as permissões de root para pasta do instalador:
+
 chmod -R 777 [nome da pasta do instalador aqui]
 
 *Vamos instalar o Chatbot:*
+
 Execute o comando:
+
 ./install_primaria
 
 Bem vindo (a) ao Gerenciador chatbot, selecione abaixo a próxima ação:
 
 Escreva: 0
 
-Insira senha para o usuário Deploy e Banco de dados (Não utilizar
-caracteres especiais):
+Insira senha para o usuário Deploy e Banco de dados (Não utilizar caracteres especiais):
 
 Senha sugerida: 123456 (coloque a senha que quiser aqui).
 
@@ -54,8 +56,8 @@ Insira o link do github que deseja instalar:
 
 [link do seu código do github aqui]
 
-Informe um nome para a instância/Empresa que será instalada(Não
-utilizar espaços ou caracteres especiais, utilizar letras minúsculas;)
+Informe um nome para a instância/Empresa que será instalada(Não utilizar espaços ou caracteres especiais, utilizar letras minúsculas;)
+
 Nome sugerido: empresa01 (coloque o nome da empresa que quiser aqui).
 
 Informe a qtde de conexões/whats que a empresa01 poderá cadastrar:
@@ -83,6 +85,7 @@ Coloque: 5000
 Obs: Caso o seu código fonte estiver privado lá no github, a instalação irá lhe pedir o usuário e senha, não esqueça que a sua senha do github é o token gerado no seu perfil.
 
 Após a instalação, você precisa liberar 4 portas no Security do aaPanel:
+
 No Menu do aapanel a sua direita, você encontra o Security.
 
 Libere as portas: 3000, 4000, 443.
