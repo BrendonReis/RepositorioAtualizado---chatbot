@@ -1,6 +1,6 @@
 # CHATBOT 2024
 
-*Instalação completa*:
+# *Instalação completa*:
 
 Antes de começarmos, você precisa estar com uma
 VPS e Domínio em mãos!
@@ -13,20 +13,20 @@ Exemplo:
 Para frontend: app.seudominioaqui.com
 Para backend: api.seudominioaqui.com
 
-*Pronto?! vamos lá..*
+# *Pronto?! vamos lá..*
 
 Atenção: O texto em cor roxa são as linhas de comando
 que devem ser executadas no seu terminal.
 
-*Atualização da VPS:*
+# *Atualização da VPS:*
 apt update
 apt upgrade
 
-*Instalação do aaPanel:*
+# *Instalação do aaPanel:*
 wget -O install.sh https://www.aapanel.com/script/install_7.0_en.sh
 bash install.sh
 
-*Após logar no aaPanel:*
+# *Após logar no aaPanel:*
 
 No menu “files”, dentro da pasta “home” do aapanel:
 
