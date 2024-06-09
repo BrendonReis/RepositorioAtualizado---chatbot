@@ -24,6 +24,7 @@ apt upgrade
 
 # *Instalação do aaPanel:*
 wget -O install.sh https://www.aapanel.com/script/install_7.0_en.sh
+
 bash install.sh
 
 # *Após logar no aaPanel:*
