@@ -18,7 +18,9 @@ Para backend: api.seudominioaqui.com
 Atenção: O texto em cor roxa são as linhas de comando que devem ser executadas no seu terminal.
 
 # *Atualização da VPS:*
+
 apt update
+
 apt upgrade
 
 # *Instalação do aaPanel:*
