@@ -16,7 +16,10 @@ export const TransferTicketQueue = async (): Promise<void> => {
   //buscar os tickets que em pendentes e sem fila
   const tickets = await Ticket.findAll({
     where: {
-      status: "pending",
+      [Op.or]: [
+        { status: "autoassigned"},
+        {status: "pending"}
+      ],
       queueId: {
         [Op.is]: null
       },
@@ -26,8 +29,6 @@ export const TransferTicketQueue = async (): Promise<void> => {
 
   // varrer os tickets e verificar se algum deles está com o tempo estourado
   tickets.forEach(async ticket => {
-
-
 
     const wpp = await Whatsapp.findOne({
       where: {
@@ -74,9 +75,5 @@ export const TransferTicketQueue = async (): Promise<void> => {
       logger.info(`Transferencia de ticket automatica ticket id ${ticket.id} para a fila ${wpp.transferQueueId}`);
 
     }
-
-
   });
-
-
 }

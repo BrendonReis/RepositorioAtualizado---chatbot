@@ -154,12 +154,13 @@ const TicketsManagerTabs = () => {
 
   const [openCount, setOpenCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
+  const [autoassignedCount, setAutoassignedCount] = useState(0);
 
   const userQueueIds = user.queues.map((q) => q.id);
   const [selectedQueueIds, setSelectedQueueIds] = useState(userQueueIds || []);
   const [selectedTags, setSelectedTags] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
-
+  
   useEffect(() => {
     if (user.profile.toUpperCase() === "ADMIN") {
       setShowAllTickets(true);
@@ -247,7 +248,7 @@ const TicketsManagerTabs = () => {
             classes={{ root: classes.tab }}
           />
           <Tab
-            value={"closed"}
+            value={"noTicketsTitle"}
             icon={<CheckBoxIcon />}
             label={i18n.t("tickets.tabs.closed.title")}
             classes={{ root: classes.tab }}
@@ -343,6 +344,18 @@ const TicketsManagerTabs = () => {
             }
             value={"pending"}
           />
+          <Tab
+            label={
+              <Badge
+                className={classes.badge}
+                badgeContent={autoassignedCount}
+                color="secondary"
+              >
+                {i18n.t("ticketsList.autoassignedHeader")}
+              </Badge>
+            }
+            value={"autoassigned"}
+          />
         </Tabs>
         <Paper className={classes.ticketsWrapper}>
           <TicketsList
@@ -357,6 +370,12 @@ const TicketsManagerTabs = () => {
             selectedQueueIds={selectedQueueIds}
             updateCount={(val) => setPendingCount(val)}
             style={applyPanelStyle("pending")}
+          />
+          <TicketsList
+            status="autoassigned"
+            selectedQueueIds={selectedQueueIds}
+            updateCount={(val) => setAutoassignedCount(val)}
+            style={applyPanelStyle("autoassigned")}
           />
         </Paper>
       </TabPanel>

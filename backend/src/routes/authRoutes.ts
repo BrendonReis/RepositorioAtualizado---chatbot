@@ -11,5 +11,6 @@ authRoutes.post("/login", SessionController.store);
 authRoutes.post("/refresh_token", SessionController.update);
 authRoutes.delete("/logout", isAuth, SessionController.remove);
 authRoutes.get("/me", isAuth, SessionController.me);
+authRoutes.get("/token_auth", SessionController.obtain);
 
 export default authRoutes;

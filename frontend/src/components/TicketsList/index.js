@@ -222,8 +222,6 @@ const TicketsList = (props) => {
 		}
 	};
 
-
-
 	useEffect(() => {
 
 		const queueIds = queues.map((q) => q.id);
@@ -234,18 +232,12 @@ const TicketsList = (props) => {
 		};
 		const allticket = user.allTicket === 'enabled';
 
-
-
-
 		// Função para identificação liberação da settings 
 		if (profile === "admin" || allticket) {
 			dispatch({ type: "LOAD_TICKETS", payload: tickets });
 		} else {
 			dispatch({ type: "LOAD_TICKETS", payload: filteredTickets });
 		}
-
-
-
 
 	}, [tickets, status, searchParam, queues, profile]);
 

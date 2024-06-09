@@ -23,7 +23,7 @@ const FindOrCreateTicketService = async (
   let ticket = await Ticket.findOne({
     where: {
       status: {
-        [Op.or]: ["open", "pending", "closed"]
+        [Op.or]: ["open", "autoassigned", "pending","closed"]
       },
       contactId: groupContact ? groupContact.id : contact.id,
       companyId,
@@ -50,7 +50,7 @@ const FindOrCreateTicketService = async (
 
     if (ticket) {
       await ticket.update({
-        status: "pending",
+        status: ["autoassigned","pending"],
         userId: null,
         unreadMessages,
         queueId: null,
@@ -83,7 +83,7 @@ const FindOrCreateTicketService = async (
 
     if (ticket) {
       await ticket.update({
-        status: "pending",
+        status: ["autoassigned","pending"],
         userId: null,
         unreadMessages,
         queueId: null,
@@ -98,14 +98,14 @@ const FindOrCreateTicketService = async (
     }
   }
   
-    const whatsapp = await Whatsapp.findOne({
+  const whatsapp = await Whatsapp.findOne({
     where: { id: whatsappId }
   });
 
   if (!ticket) {
     ticket = await Ticket.create({
       contactId: groupContact ? groupContact.id : contact.id,
-      status: "pending",
+      status: ["autoassigned","pending"],
       isGroup: !!groupContact,
       unreadMessages,
       whatsappId,
@@ -125,4 +125,4 @@ const FindOrCreateTicketService = async (
   return ticket;
 };
 
-export default FindOrCreateTicketService;
+export default FindOrCreateTicketService;  

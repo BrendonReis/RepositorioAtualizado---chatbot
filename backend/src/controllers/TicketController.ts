@@ -34,6 +34,16 @@ interface TicketData {
   integrationId: number;
 }
 
+export const getAllTickets = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const tickets = await Ticket.findAll();
+    return res.status(200).json({ tickets });
+  } catch (error) {
+    console.error("Erro ao buscar tickets:", error);
+    return res.status(500).json({ message: "Erro interno do servidor", error: error.message });
+  }
+};
+
 export const index = async (req: Request, res: Response): Promise<Response> => {
   const {
     pageNumber,
@@ -104,6 +114,28 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
     action: "update",
     ticket
   });
+  return res.status(200).json(ticket);
+};
+
+export const storePending = async (req: Request, res: Response): Promise<Response> => {
+  const { contactId, status, userId, queueId, whatsappId }: TicketData = req.body;
+  const { companyId } = req.user;
+
+  const ticket = await CreateTicketService({
+    contactId,
+    status,
+    userId,
+    companyId,
+    queueId,
+    whatsappId
+  });
+
+  const io = getIO();
+  io.to(ticket.status).emit(`company-${companyId}-ticket`, {
+    action: "update",
+    ticket
+  });
+
   return res.status(200).json(ticket);
 };
 

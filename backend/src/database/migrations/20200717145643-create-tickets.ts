@@ -11,7 +11,7 @@ module.exports = {
       },
       status: {
         type: DataTypes.STRING,
-        defaultValue: "pending",
+        defaultValue: "autoassigned",
         allowNull: false
       },
       lastMessage: {

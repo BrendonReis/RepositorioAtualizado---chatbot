@@ -116,6 +116,7 @@ const TicketsManager = () => {
   const [openCount, setOpenCount] = useState(0);
   const [pendingCount, setPendingCount] = useState(0);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [autoassignedCount, setautoassignedCount] = useState(0);
 
   const userQueueIds = user.queues.map((q) => q.id);
   const [selectedQueueIds, setSelectedQueueIds] = useState(userQueueIds || []);
@@ -127,9 +128,15 @@ const TicketsManager = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Adicionando o useEffect para monitorar mudanças no pendingCount
+  useEffect(() => {
+    if (pendingCount > 1) {
+      window.location.reload();
+    }
+  }, [pendingCount]);
+
   const handleSearch = (e) => {
     const searchedTerm = e.target.value.toLowerCase();
-
 
     setSearchParam(searchedTerm);
     if (searchedTerm === "") {
@@ -211,6 +218,21 @@ const TicketsManager = () => {
             classes={{ root: classes.tab }}
           />
           <Tab
+            value={"autoassigned"}
+            icon={<HourglassEmptyRounded />}
+            label={
+              <Badge
+                className={classes.badge}
+                badgeContent={autoassignedCount}
+                overlap="rectangular"
+                color="secondary"
+              >
+                {i18n.t("ticketsList.autoassignedHeader")}
+              </Badge>
+            }
+            classes={{ root: classes.tab }}
+          />
+          <Tab
             value={"closed"}
             icon={<AllInboxRounded />}
             label={i18n.t("tickets.tabs.closed.title")}
@@ -270,6 +292,12 @@ const TicketsManager = () => {
             updateCount={(val) => setPendingCount(val)}
             style={applyPanelStyle("pending")}
           />
+          <TicketsList
+            status="autoassigned"
+            selectedQueueIds={selectedQueueIds}
+            updateCount={(val) => setautoassignedCount(val)}
+            style={applyPanelStyle("autoassigned")}
+          />
         </Paper>
       </TabPanel>
 
@@ -283,7 +311,15 @@ const TicketsManager = () => {
         />
       </TabPanel>
 
-
+      <TabPanel value={tab} name="autoassigned" className={classes.ticketsWrapper}>
+      <TagsFilter onFiltered={handleSelectedTags} />
+        <TicketsList
+          status="autoassignedCount"
+          showAll={true}
+          selectedQueueIds={selectedQueueIds}
+          updateCount={(val) => setautoassignedCount(val)}
+        />
+      </TabPanel>
 
       <TabPanel value={tab} name="closed" className={classes.ticketsWrapper}>
       <TagsFilter onFiltered={handleSelectedTags} />

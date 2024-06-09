@@ -1,17 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.40de1c4b.chunk.css",
-    "main.js": "/static/js/main.8d29cdae.chunk.js",
+    "main.js": "/static/js/main.7cb9e298.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.e12cbde6.js",
     "static/css/2.406c6332.chunk.css": "/static/css/2.406c6332.chunk.css",
     "static/js/2.662ed8e4.chunk.js": "/static/js/2.662ed8e4.chunk.js",
     "static/js/3.2283c517.chunk.js": "/static/js/3.2283c517.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.832f4dd73d139d80e621ff7deeace2ba.js": "/precache-manifest.832f4dd73d139d80e621ff7deeace2ba.js",
+    "precache-manifest.6b4c7c5f347766b3e244a575feb6196d.js": "/precache-manifest.6b4c7c5f347766b3e244a575feb6196d.js",
     "service-worker.js": "/service-worker.js",
     "static/js/2.662ed8e4.chunk.js.LICENSE.txt": "/static/js/2.662ed8e4.chunk.js.LICENSE.txt",
     "static/js/3.2283c517.chunk.js.LICENSE.txt": "/static/js/3.2283c517.chunk.js.LICENSE.txt",
     "static/media/chat_notify.mp3": "/static/media/chat_notify.0b98784b.mp3",
+    "static/media/logo.png": "/static/media/logo.9702bbf3.png",
     "static/media/n8n.png": "/static/media/n8n.5c788b8d.png",
     "static/media/planilha.xlsx": "/static/media/planilha.549edeba.xlsx",
     "static/media/sound.mp3": "/static/media/sound.a8df5d9c.mp3",
@@ -24,6 +25,6 @@
     "static/css/2.406c6332.chunk.css",
     "static/js/2.662ed8e4.chunk.js",
     "static/css/main.40de1c4b.chunk.css",
-    "static/js/main.8d29cdae.chunk.js"
+    "static/js/main.7cb9e298.chunk.js"
   ]
 }

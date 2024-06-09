@@ -871,7 +871,7 @@ const verifyMediaMessage = async (
   });
 
   if (!msg.key.fromMe && ticket.status === "closed") {
-    await ticket.update({ status: "pending" });
+    await ticket.update({status: "autoassigned"});
     await ticket.reload({
       include: [
         { model: Queue, as: "queue" },
@@ -934,7 +934,7 @@ export const verifyMessage = async (
   await CreateMessageService({ messageData, companyId: ticket.companyId });
 
   if (!msg.key.fromMe && ticket.status === "closed") {
-    await ticket.update({ status: "pending" });
+    await ticket.update({status: "autoassigned"});
     await ticket.reload({
       include: [
         { model: Queue, as: "queue" },
@@ -1092,11 +1092,11 @@ const verifyQueue = async (
     }
 
     await UpdateTicketService({
-      ticketData: { queueId: firstQueue.id, chatbot, status: "pending" },
+      ticketData: { queueId: firstQueue.id, chatbot, status: "autoassigned"},
       ticketId: ticket.id,
       companyId: ticket.companyId,
     });
-
+    
     return;
   }
 

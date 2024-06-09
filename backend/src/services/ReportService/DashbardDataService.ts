@@ -30,7 +30,7 @@ export default async function DashboardDataService(
         ct.name "contactName",
         ct.number "contactNumber",
         (tt."finishedAt" is not null) "finished",
-        (tt."userId" is null and tt."finishedAt" is null) "pending",
+        (tt."userId" is null and tt."finishedAt" is null) "autoassigned",
         coalesce((
           (date_part('day', age(coalesce(tt."ratingAt", tt."finishedAt") , tt."startedAt")) * 24 * 60) +
           (date_part('hour', age(coalesce(tt."ratingAt", tt."finishedAt"), tt."startedAt")) * 60) +
@@ -64,7 +64,7 @@ export default async function DashboardDataService(
         (
           select count(distinct "id")
           from "Tickets"
-          where status like 'pending' and "companyId" = ?
+          where status like 'autoassigned' and "companyId" = ?
         ) "supportPending",
         (select count(id) from traking where finished) "supportFinished",
         (

@@ -47,8 +47,9 @@ const ListTicketsService = async ({
   withUnreadMessages,
   companyId
 }: Request): Promise<Response> => {
+
   let whereCondition: Filterable["where"] = {
-    [Op.or]: [{ userId }, { status: "pending" }],
+    [Op.or]: [{ userId }, {status: "pending"}, {status: "autoassigned"}],
     queueId: { [Op.or]: [queueIds, null] }
   };
   let includeCondition: Includeable[];
@@ -159,7 +160,7 @@ const ListTicketsService = async ({
     const userQueueIds = user.queues.map(queue => queue.id);
 
     whereCondition = {
-      [Op.or]: [{ userId }, { status: "pending" }],
+      [Op.or]: [{ userId }, {status: "pending"}, {status: "autoassigned"}],
       queueId: { [Op.or]: [userQueueIds, null] },
       unreadMessages: { [Op.gt]: 0 }
     };

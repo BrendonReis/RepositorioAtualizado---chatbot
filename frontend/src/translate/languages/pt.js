@@ -414,6 +414,7 @@ const messages = {
         },
       },
       ticketsList: {
+        autoassignedHeader: "AutoAtendimento",  
         pendingHeader: "Aguardando",
         assignedHeader: "Atendendo",
         noTicketsTitle: "Nada aqui!",

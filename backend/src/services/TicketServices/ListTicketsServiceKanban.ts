@@ -48,7 +48,7 @@ const ListTicketsServiceKanban = async ({
   companyId
 }: Request): Promise<Response> => {
   let whereCondition: Filterable["where"] = {
-    [Op.or]: [{ userId }, { status: "pending" }],
+    [Op.or]: [{ userId }, { status: "pending"}, { status: "autoassigned"}],
     queueId: { [Op.or]: [queueIds, null] }
   };
   let includeCondition: Includeable[];
@@ -87,7 +87,7 @@ const ListTicketsServiceKanban = async ({
 
   whereCondition = {
     ...whereCondition,
-    status: { [Op.or]: ["pending", "open"] }
+    status: { [Op.or]: ["pending", "open", "autoassigned"] }
   };
 
   if (searchParam) {
@@ -157,7 +157,7 @@ const ListTicketsServiceKanban = async ({
     const userQueueIds = user.queues.map(queue => queue.id);
 
     whereCondition = {
-      [Op.or]: [{ userId }, { status: "pending" }],
+      [Op.or]: [{ userId }, { status: "pending" }, { status: "autoassigned"}],
       queueId: { [Op.or]: [userQueueIds, null] },
       unreadMessages: { [Op.gt]: 0 }
     };

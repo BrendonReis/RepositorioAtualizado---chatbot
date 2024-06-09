@@ -8,6 +8,8 @@ import { RefreshTokenService } from "../services/AuthServices/RefreshTokenServic
 import FindUserFromToken from "../services/AuthServices/FindUserFromToken";
 import User from "../models/User";
 
+let cachedToken: string | null = null;
+
 export const store = async (req: Request, res: Response): Promise<Response> => {
   const { email, password } = req.body;
 
@@ -27,6 +29,8 @@ export const store = async (req: Request, res: Response): Promise<Response> => {
       companyId: serializedUser.companyId
     }
   });
+
+  cachedToken = token;
 
   return res.status(200).json({
     token,
@@ -52,6 +56,13 @@ export const update = async (
   SendRefreshToken(res, refreshToken);
 
   return res.json({ token: newToken, user });
+};
+
+export const obtain = async (req: Request, res: Response): Promise<Response> => {
+  if (!cachedToken) {
+    throw new AppError("ERR_SESSION_EXPIRED", 401);
+  }
+  return res.json({ token: cachedToken });
 };
 
 export const me = async (req: Request, res: Response): Promise<Response> => {

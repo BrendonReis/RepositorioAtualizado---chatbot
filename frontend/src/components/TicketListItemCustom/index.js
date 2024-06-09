@@ -508,7 +508,7 @@ const useStyles = makeStyles((theme) => ({
 			  //POWERTECH INSERIDO O handleChangeTab
               onClick={e => handleAcepptTicket(ticket.id)}
             >
-              {i18n.t("ticketsList.buttons.accept")}
+            {i18n.t("ticketsList.buttons.accept")}
             </ButtonWithSpinner>
 
           )}
@@ -522,9 +522,8 @@ const useStyles = makeStyles((theme) => ({
               loading={loading}
               onClick={e => handleCloseTicket(ticket.id)}
             >
-              {i18n.t("ticketsList.buttons.closed")}
+            {i18n.t("ticketsList.buttons.closed")}
             </ButtonWithSpinner>
-
           )}
           {(ticket.status === "closed") && (
             <ButtonWithSpinner

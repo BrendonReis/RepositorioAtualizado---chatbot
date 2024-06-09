@@ -5,15 +5,21 @@ const UpdateDeletedUserOpenTicketsStatus = async (
   tickets: Ticket[],
   companyId: number
 ): Promise<void> => {
-  tickets.forEach(async t => {
+  for (const t of tickets) {
     const ticketId = t.id.toString();
+
+    await UpdateTicketService({
+      ticketData: { status: "autoassigned" },
+      ticketId,
+      companyId
+    });
 
     await UpdateTicketService({
       ticketData: { status: "pending" },
       ticketId,
       companyId
     });
-  });
+  }
 };
 
 export default UpdateDeletedUserOpenTicketsStatus;

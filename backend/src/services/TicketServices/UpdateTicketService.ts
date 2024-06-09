@@ -91,7 +91,7 @@ const UpdateTicketService = async ({
       // let otherTicket = await Ticket.findOne({
       //   where: {
       //     contactId: ticket.contactId,
-      //     status: { [Op.or]: ["open", "pending", "group"] },
+      //     status: { [Op.or]: ["open", "pending", autoassigned, "group"] },
       //     whatsappId
       //   }
       // });

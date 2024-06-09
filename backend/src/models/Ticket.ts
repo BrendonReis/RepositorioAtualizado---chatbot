@@ -35,9 +35,9 @@ class Ticket extends Model<Ticket> {
   @Column
   id: number;
 
-  @Column({ defaultValue: "pending" })
+  @Column({ defaultValue: "autoassigned" })
   status: string;
-
+  
   @Column
   unreadMessages: number;
 
