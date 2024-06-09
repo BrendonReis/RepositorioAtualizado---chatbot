@@ -22,7 +22,7 @@ apt update
 apt upgrade
 
 # *Instalação do aaPanel:*
-wget -O install.sh https://www.aapanel.com/script/install_7.0_en.sh
+wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh
 
 bash install.sh
 
